@@ -1,0 +1,55 @@
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\bin\Debug\RobotGUI.exe.config
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\bin\Debug\RobotGUI.exe
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\bin\Debug\RobotGUI.pdb
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.csprojResolveAssemblyReference.cache
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\MainWindow.g.cs
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\App.g.cs
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI_MarkupCompile.cache
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI_MarkupCompile.lref
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\MainWindow.baml
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.g.resources
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.Properties.Resources.resources
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.csproj.GenerateResource.Cache
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.exe
+E:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.pdb
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\bin\Debug\RobotGUI.exe.config
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.exe
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.pdb
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\bin\Debug\RobotGUI.exe
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\bin\Debug\RobotGUI.pdb
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.csprojResolveAssemblyReference.cache
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\MainWindow.g.cs
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\App.g.cs
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI_MarkupCompile.cache
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI_MarkupCompile.lref
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\MainWindow.baml
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.g.resources
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.Properties.Resources.resources
+H:\Backup\University work\Programming\Python\Robot\Robot_GUI\RobotGUI\RobotGUI\obj\Debug\RobotGUI.csproj.GenerateResource.Cache
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\bin\Debug\RobotGUI.exe.config
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.exe
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.pdb
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.csprojResolveAssemblyReference.cache
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\MainWindow.g.cs
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\App.g.cs
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI_MarkupCompile.cache
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI_MarkupCompile.lref
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\bin\Debug\RobotGUI.exe
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\bin\Debug\RobotGUI.pdb
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\MainWindow.baml
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.g.resources
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.Properties.Resources.resources
+D:\Erik_Thomas\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.csproj.GenerateResource.Cache
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\bin\Debug\RobotGUI.exe.config
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.exe
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.pdb
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\bin\Debug\RobotGUI.exe
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\bin\Debug\RobotGUI.pdb
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\MainWindow.g.cs
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\App.g.cs
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI_MarkupCompile.cache
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI_MarkupCompile.lref
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\MainWindow.baml
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.g.resources
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.Properties.Resources.resources
+D:\Erik_Thomas_\Robot\RobotGUI\RobotGUI\obj\Debug\RobotGUI.csproj.GenerateResource.Cache

@@ -1,0 +1,1 @@
+start D:/RobotConda/python.exe D:/Erik_Thomas/Robot/robot_compiled/voice_commands_new.py
