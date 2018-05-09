@@ -12,7 +12,8 @@ class Window(tk.Frame):
         self.master = master
         self.is_standing = True
         # can change ip if required, port must not be changed
-        self.move = Movement("169.254.141.183", 9559)
+        # self.move = Movement("169.254.141.183", 9559)
+        self.move = Movement("192.168.1.123", 9559)
         self.labels = []
         self.init_window()
 
