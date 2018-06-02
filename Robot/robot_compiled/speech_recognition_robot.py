@@ -6,11 +6,6 @@ import time
 import random
 from movement import Movement
 from additional import Other
-"""
-    TODO: run choregraphe scripts from Python and add to commands
-          test this script on the robot
-          test accuracy with background noise
-"""
 
 class Speech():
     def __init__(self, ip, port, audio_log_path):
@@ -26,6 +21,7 @@ class Speech():
                               "I am feeling well, you?",
                               "I am doing well thanks",
                               "Installing emotional protocols beep boop... I am feeling what would be defined as 'well'. And you?"]
+        #paths to choregraphe files on the robot are stored with a relevant index
         self.dance_dict = {"thriller": "new_thriller-40424e/new_thriller",
                            "disco": "disco-dd565c/disco",
                            "arm dance": "arm_dance-074ba5/arm_dance",
@@ -101,67 +97,83 @@ class Speech():
         """Gets the robot to perform actions based an audio input from the user
         :param str command: the audio_log of the user's command, taken from the recognise_audio method
         """
-        # TODO: add dances when working with choregraphe scripts
-
         command = command.lower()
         print("command is {}".format(command))
+        
         if command == "hello robbie":
             self.tts.speak(random.choice(self.greeting_list))
             self.move.behaviour(behaviour_name=self.behaviour_dict['hello'])
             # self.move.toggle_autonomous_movement()
+            
         elif command == "fire the trebuchet":
             self.tts.speak("Beep beep... Target locked")
+            
         elif command == "what is the time" or command == "what time is it":
             hour, minute, meridiem = self.get_time()
             self.tts.speak("The time is {}:{} {}".format(hour, minute, meridiem))
+            
         elif command == "how are you robbie" or command == "how are you":
             self.tts.speak(random.choice(self.emotions_list))
+            
         elif command == "where are we":
             self.tts.speak("We are at Edge Hill University, situated in the north-western town of Ormskirk")
+            
         elif command == "what is this department":
             self.tts.speak("this is the computer science department, which has a wide variety of courses!")
+            
         elif command == "what is your favourite pathway":
             self.tts.speak("BSc Robotics and Artificial Intelligence, you will even get to program me if your final year project is suitable!")
+            
         elif command == "can you sit down":
             self.tts.speak("Time for a sit down!")
             self.move.posture("Sit")
+            
         elif command == "stand":
             self.tts.speak("Standing up!")
             self.move.posture("StandInit")
+            
         elif command == "can you walk forwards" or command == "come over here robbie":
             self.tts.speak("Get ready to catch me!")
             time.sleep(0.5)
             self.move.walk(0.5, _sleep=5)
-            pass
+            
         elif command == "can you walk backwards":
             self.tts.speak("Get ready to catch me!")
             self.move.walk(-0.5, _sleep=5)
-            pass
+            
         elif command == "are you tired robbie":
             self.tts.speak("yawn... time for a lie down")
             self.move.posture("LyingBack")
+        #-----------------Behaviours-----------------
         elif command == "do you feel like dancing":
-            # TODO: add behaviour code for dancing
             index, current_dance = random.choice(self.dance_dict.items())
             print("current dance: {}".format(current_dance))
             self.move.behaviour(behaviour_name=current_dance)
+            
         elif command == "show me your best dance moves":
             self.move.behaviour(behaviour_name="canavanplacemusic-16a6c1/CanavanPlace music")
+            
         elif command == "can you play the guitar":
             self.move.behaviour(behaviour_name=self.behaviour_dict['air guitar'])
+            
         elif command == "why don't you do some exercise" or command == "can you do push-ups":
             self.move.behaviour(behaviour_name=self.behaviour_dict['pushups'])
+            
         elif command == "bless you":
             self.move.behaviour(behaviour_name=self.behaviour_dict['sneeze'])
+            
         elif command == "it is time to stop" or command == "can you please stop that movement":
             self.move.behaviour(behaviour_name="stop")
+            
         else:
             return
 
     def call_method(self):
+        """Prevents the speech recognition from exiting after a timeout of not hearing audio"""
         try:
             self.recognise_audio()
         except KeyboardInterrupt:
+            #for when the program is to be terminated using ctrl+c
             sys.exit()
         except:
             print("problemerino solved")
