@@ -1,9 +1,6 @@
-#from Tkinter import *
 import Tkinter as tk
 import time
 import webbrowser
-from PIL import Image, ImageTk
-#commented for testing as requires almath and alproxy
 from movement import Movement
 
 class Window(tk.Frame):
@@ -22,7 +19,6 @@ class Window(tk.Frame):
                                "blow kiss": "blow_kisses-b60c2b/blow_kisses",
                                "air guitar": "air_guitar-f1b1e7/air_guitar"}
         # can change ip if required, port must not be changed
-        # self.move = Movement("169.254.141.183", 9559)
         self.move = Movement("192.168.1.120", 9559)
         self.labels = []
         self.init_window()
@@ -49,10 +45,6 @@ class Window(tk.Frame):
         file.add_command(label='Exit', command=self.master.quit)
         main_menu.add_cascade(label='File', menu=file)
 
-        '''edit = tk.Menu(main_menu)
-        edit.add_command(label='Show image', command=self.show_image)
-        main_menu.add_cascade(label='Edit', menu=edit)'''
-
         help = tk.Menu(main_menu)
         help.add_command(label='Joint Help', command=self.show_slider_help)
         help.add_command(label='Preset Methods', command=self.show_presets)
@@ -65,7 +57,6 @@ class Window(tk.Frame):
         main_menu.add_cascade(label='Presets', menu=presets)
 
     def init_buttons(self):
-        #TODO: place buttons at correct coordinates
         btn_quit = tk.Button(self.master, text="quit", command=self.master.quit)
         btn_quit.place(x=0, y=0)
 
@@ -81,7 +72,6 @@ class Window(tk.Frame):
         # btn_walk.place(x=0, y=0)
 
     def init_left_sliders(self):
-        #TODO: alter commands to match relevant function from movement class
         #angle sliders for joints, limited to valid rotation ranges
         elbow_slider_yaw = tk.Scale(self.master, orient='horizontal', from_=-119, to=119, command=self.move.left_elbow_yaw)
         elbow_slider_yaw.place(x=0, y=100)
@@ -99,7 +89,6 @@ class Window(tk.Frame):
         pass
 
     def init_right_sliders(self):
-        # TODO: alter commands to match relevant function from movement class
         # angle sliders for joints, limited to valid rotation ranges
         elbow_slider_yaw = tk.Scale(self.master, orient='horizontal', from_=-119, to=119, command=self.move.right_elbow_yaw)
         elbow_slider_yaw.place(x=200, y=100)
@@ -162,14 +151,6 @@ class Window(tk.Frame):
 
     def print_slider_value(self, val):
         print(val)
-        pass
-
-    def show_image(self):
-        # TODO: get the image showing, try different loading method
-        image_blue = Image.open('F:/Pictures/013.jpg')
-        render = ImageTk.PhotoImage(image_blue)
-        load_image_blue = Label(self, image=render)
-        load_image_blue.place(x=20, y=20)
         pass
 
     def show_slider_help(self):
@@ -261,13 +242,10 @@ class Window(tk.Frame):
         pass
 
     def stand_toggle(self):
-        # TODO: call movement stand and sit methods
         if self.is_standing:
-            # TODO: insert sitting method
             self.move.posture("Sit")
             self.is_standing = False
         else:
-            # TODO: insert standing method
             self.move.posture("Stand")
             self.is_standing = True
         pass

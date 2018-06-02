@@ -185,7 +185,7 @@ ip = "192.168.1.120"
 #always 9559, do not change
 port = 9559
 #change file path to wherever the files are saved
-log_path = "D:/Erik_Thomas/Robot/robot_audio/audio_out.txt"
+log_path = "D:/Erik_Thomas/Robot/audio_out.txt"
 speech_rec = Speech(ip, port, log_path)
 
 speech_rec.call_method()
