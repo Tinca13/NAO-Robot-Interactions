@@ -7,7 +7,7 @@ Scripts that allow for full manipulation of the NAO robot's joints and sensors. 
 - Live video: Streaming of video from the robot's camera.
 
 ## Voice commands:
-Shown in the audio_commands.txt file.
+Shown in the commands.txt file.
 
 ## Contributors:
 - [Zach Wharton](https://github.com/zwharton15)
