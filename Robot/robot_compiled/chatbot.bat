@@ -1,1 +1,0 @@
-start D:/RobotConda/python.exe D:/ZW/nmt-chatbot-0.1/chatbot_inference.py
