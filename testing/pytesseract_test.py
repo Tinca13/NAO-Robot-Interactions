@@ -8,7 +8,7 @@ from PIL import Image
     -- pip install pytesseract
     -- Install tesseract from: https://github.com/UB-Mannheim/tesseract/wiki (use 3.05 stable)
     -- System variable path contains parent tesseract directory
-    -- Create new environment variable called TESSDATA_PREFIX
+    -- Create new environment variable called TESSDATA_PREFIX and point it to the parent tesseract directory
 """
 # can change path to image to scan for text
 image = cv2.imread("colour_of_magic.png", 0)
