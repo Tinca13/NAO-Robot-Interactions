@@ -134,12 +134,11 @@ class Speech():
             
         elif command == "can you walk forwards" or command == "come over here robbie":
             self.tts.speak("Get ready to catch me!")
-            time.sleep(0.5)
-            self.move.walk(0.5, _sleep=5)
+            self.move.walk_fw_set()
             
         elif command == "can you walk backwards":
             self.tts.speak("Get ready to catch me!")
-            self.move.walk(-0.5, _sleep=5)
+            self.move.walk_bk_set()
             
         elif command == "are you tired robbie":
             self.tts.speak("yawn... time for a lie down")
@@ -161,6 +160,11 @@ class Speech():
             
         elif command == "bless you":
             self.move.behaviour(behaviour_name=self.behaviour_dict['sneeze'])
+
+        elif command == "do you know thriller":
+            self.tts.speak("perhaps I do...")
+            time.sleep(1)
+            self.move.behaviour(behaviour_name=self.dance_dict['thriller'])
             
         elif command == "it is time to stop" or command == "can you please stop that movement":
             self.move.behaviour(behaviour_name="stop")
