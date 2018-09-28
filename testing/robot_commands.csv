@@ -1,0 +1,5 @@
+type,command,action
+Speech,hello robbie,hello I am Robbie the robot
+Speech,what is the time,the time is xx:yy
+Behaviour,can you do the air guitar,air guitar
+Movement,can you walk forwards,walk forward

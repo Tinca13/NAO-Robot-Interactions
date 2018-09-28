@@ -1,0 +1,70 @@
+(dp0
+S'stop'
+p1
+c__builtin__
+set
+p2
+((lp3
+S'can you please stop that movement'
+p4
+aS'it is time to stop'
+p5
+atp6
+Rp7
+sS'behaviours'
+p8
+g2
+((lp9
+S'do you know thriller'
+p10
+aS"why don't you do some exercise"
+p11
+aS'do you feel like dancing'
+p12
+aS'show me your best dance moves'
+p13
+aS'can you play the guitar'
+p14
+aS'bless you'
+p15
+atp16
+Rp17
+sS'speech'
+p18
+g2
+((lp19
+S'how are you'
+p20
+aS'hello robbie'
+p21
+aS'what is the time'
+p22
+aS'fire the trebuchet'
+p23
+aS'what is your favourite pathway'
+p24
+aS'where are we'
+p25
+aS'what is this department'
+p26
+atp27
+Rp28
+sS'movement'
+p29
+g2
+((lp30
+S'can you walk forward'
+p31
+aS'can you walk backwards'
+p32
+aS'come over here robbie'
+p33
+aS'stand'
+p34
+aS'can you sit down'
+p35
+aS'are you tired robbie'
+p36
+atp37
+Rp38
+s.

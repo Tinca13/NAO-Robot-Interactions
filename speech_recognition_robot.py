@@ -21,7 +21,7 @@ class Speech():
                               "I am feeling well, you?",
                               "I am doing well thanks",
                               "Installing emotional protocols beep boop... I am feeling what would be defined as 'well'. And you?"]
-        #paths to choregraphe files on the robot are stored with a relevant index
+        # paths to choregraphe files on the robot are stored with a relevant index
         self.dance_dict = {"thriller": "new_thriller-40424e/new_thriller",
                            "disco": "disco-dd565c/disco",
                            "arm dance": "arm_dance-074ba5/arm_dance",
@@ -40,7 +40,7 @@ class Speech():
 
     def recognise_audio(self):
         """Handles the recognition of the audio to pass to the commands method"""
-        #can be used to clear the log file every time the audio is recognised
+        # can be used to clear the log file every time the audio is recognised
         #with open(log_path, "w") as log_file:
         #    log_file.close()
 

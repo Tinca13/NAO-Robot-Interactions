@@ -1,0 +1,59 @@
+(lp0
+S'Hi, I am Robbie the robot, how are you?'
+p1
+aS'Greetings traveller, and well met!'
+p2
+aS'Hello there, and welcome to Edge Hill Computer Science Department. I am Robbie the robot'
+p3
+a.(lp0
+S'I am feeling okay, thank you. And you?'
+p1
+aS'I am feeling well, you?'
+p2
+aS'I am doing well thanks'
+p3
+aS"Installing emotional protocols beep boop... I am feeling what would be defined as 'well'. And you?"
+p4
+a.(dp0
+S'arm dance'
+p1
+S'arm_dance-074ba5/arm_dance'
+p2
+sS'tai chi'
+p3
+S'taichi-cd9975/GangnamStyle'
+p4
+sS'gangnam style'
+p5
+S'gangnam_style-2b4c5b/GangnamStyle (1)'
+p6
+sS'thriller'
+p7
+S'new_thriller-40424e/new_thriller'
+p8
+sS'disco'
+p9
+S'disco-dd565c/disco'
+p10
+s.(dp0
+S'air guitar'
+p1
+S'air_guitar-f1b1e7/air_guitar'
+p2
+sS'blow kiss'
+p3
+S'blow_kisses-b60c2b/blow_kisses'
+p4
+sS'sneeze'
+p5
+S'sneezes-4c12b5/Sneezes'
+p6
+sS'pushups'
+p7
+S'pushupsz-cc23cb/pushups'
+p8
+sS'hello'
+p9
+S'hello-bde0d2/blow_kisses'
+p10
+s.
