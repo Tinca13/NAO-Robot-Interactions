@@ -56,19 +56,10 @@ def find_path(f_name, _dir):
     return f_path
 
 if __name__ == "__main__":
-    com_dict = {"speech": 
-                    {"hello robbie", "fire the trebuchet", "what is the time",
-                    "how are you", "where are we", "what is this department",
-                    "what is your favourite pathway"},
-                "movement": 
-                    {"can you sit down", "stand", "can you walk forward",
-                    "come over here robbie", "can you walk backwards", 
-                    "are you tired robbie"},
-                "behaviours": 
-                    {"do you feel like dancing", "show me your best dance moves",
-                    "can you play the guitar", "why don't you do some exercise",
-                    "bless you", "do you know thriller"},
-                "stop": {"it is time to stop", "can you please stop that movement"} 
-                }   
-    # store_list(com_dict, 'robot_commands.pkl', 'F:\\Programming\\RemoteSandbox\\NAO-Robot-Interactions\\pkl_sources')
-    # items = get_list('robot_commands.pkl', 'F:\\Programming\\RemoteSandbox\\NAO-Robot-Interactions\\pkl_sources')
+    dance_dict = {"thriller": "new_thriller-40424e/new_thriller",
+                           "disco": "disco-dd565c/disco",
+                           "arm dance": "arm_dance-074ba5/arm_dance",
+                           "tai chi": "taichi-cd9975/GangnamStyle",
+                           "gangnam style": "gangnam_style-2b4c5b/GangnamStyle (1)",
+                           "caravan palace": "canavanplacemusic-16a6c1/CanavanPlace music"}
+    # store_list(dance_dict, 'robot_behaviours.pkl', 'H:\\Programming\\RemoteSandbox\\NAO-Robot-Interactions\\pkl_sources')
