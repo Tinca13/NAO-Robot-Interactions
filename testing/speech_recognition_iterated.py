@@ -171,7 +171,7 @@ class Speech():
 class Microphone():
     def __init__(self, audio_log):
         self.s_rec = sr.Recognizer()
-        self.audio_log = audio_log
+        self.log = audio_log
         # default values, can change depending on factors for each constant
         self.MIC = 1
         self.T_OUT = 5
@@ -226,17 +226,17 @@ class Microphone():
             print("at {} user said {}".format(time.asctime(t_struct), audio_log))
             data.append(audio_log)
 
-            with open(self.audio_log, 'a') as log:
+            with open(self.log, 'a') as f:
                 for sample in data:
-                    log.write(sample + '\n')
+                    f.write(sample + '\n')
         
-        except self.s_rec.UnknownValueError:
+        except sr.UnknownValueError:
             print("Audio not understood, please try again")
 
-        except self.s_rec.RequestError as req_err:
+        except sr.RequestError as req_err:
             print("could not request results from google API {}".format(req_err))
 
-        except self.s_rec.WaitTimeoutError:
+        except sr.WaitTimeoutError:
             print("Audio timed out, ending the process...")
             audio_log = None
 
