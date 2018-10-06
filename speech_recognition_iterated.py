@@ -16,12 +16,12 @@ from naoqi import ALProxy
 import pickle_lists as pl
 from movement import Movement
 from additional import Other
+from audio import Audio
 
 class Speech():
     def __init__(
                 self, ip, motion_proxy, 
-                bhv_file, bhv_dir, log_dir, 
-                com_file, com_dir
+                bhv_file, bhv_dir, log_path, 
                 ):
         self.IP = ip
         # constant for all instances of the robot
@@ -30,7 +30,7 @@ class Speech():
         self.com_dict = {"speech": 
                     {"hello robbie", "fire the trebuchet", "what is the time",
                     "how are you", "where are we", "what is this department",
-                    "what is your favourite pathway"},
+                    "what is your favourite pathway", "what is up dog"},
                 "movement": 
                     {"can you sit down", "stand", "can you walk forward",
                     "come over here robbie", "can you walk backwards", 
@@ -41,16 +41,16 @@ class Speech():
                 "dance": 
                     {"do you feel like dancing", "show me your best dance moves",
                     "do you know thriller"},
-                "stop": {"it is time to stop", "can you please stop that movement"} 
+                "stop": {"it is time to stop", "can you please stop that movement"} ,
+                "audio": {"robbie that is so sad", "it's time for a revolution"}
                 } 
         # checks move is a motion proxy
-        if type(motion_proxy) is ALProxy:
-            self.motion_proxy = motion_proxy
-            raise Exception("DEBUG -- motion proxy not set when passed to Speech class") 
+        self.motion_proxy = motion_proxy
         self.tts = Other(self.IP, self.PORT)
+        self.audio = Audio(self.IP)
         self.bhv = Behaviour(self.motion_proxy, self.tts, bhv_file, bhv_dir)
         # setting up audio device for speech recognition
-        self.mic = Microphone(log_dir)
+        self.mic = Microphone(log_path)
         self.mic_enabled = self.mic.mic_check()
         if not self.mic_enabled:
             print("Cannot find appropriate microphone, speech recognition disabled")
@@ -63,7 +63,7 @@ class Speech():
         """
         command = ''
         
-        while command != None:
+        while command != '{no-value}':
             command = self.mic.rec_audio()
             self.check_command(command)
 
@@ -79,8 +79,8 @@ class Speech():
         for key in self.com_dict:
             if command in self.com_dict[key]:
                 self.run_command(key, command)
-            else:
-                self.tts.speak("I don't recognise that command!")
+                return
+        #self.tts.speak("I don't recognise that command!")
     
     def run_command(self, key, command):
         """
@@ -101,7 +101,9 @@ class Speech():
         elif key == "behaviours":
             self.bhv.run_bhv(command)
         elif key == "dance":
-            self.bhv.run_dance(command)  
+            self.bhv.run_dance(command)
+        elif key == "audio":
+            self.run_audio(command)
     
     def greeting(self):
         self.tts.speak(random.choice(self.bhv.greeting_list))
@@ -120,14 +122,8 @@ class Speech():
             self.greeting()
         elif command == "what is the time" or command == "what time is it":
             # formats the current time into a speakable format for the robot
-            now = datetime.datetime.now()
-            hour = now.hour
-            if hour > 12:
-                hour -= 12
-                meridiem = 'pm'
-            else:
-                meridiem = 'am'
-            self.tts.speak("The time is {}:{} {}".format(hour, now.minute, meridiem))
+            minute, hour, meridiemformat_time()
+            self.tts.speak("The time is {}:{} {}".format(hour, minute, meridiem))
         elif command == "how are you" or command == "how are you robbie":
             self.emotion()
 
@@ -139,7 +135,29 @@ class Speech():
             
         elif command == "what is your favourite pathway":
             self.tts.speak("BSc Robotics and Artificial Intelligence of course!")
+        elif command == "what is up dog":
+            self.tts.speak("Nothimg much, whats up with you")
 
+    def run_audio(self, command):
+        if command == "robbie that is so sad":
+            self.tts.speak("Wow that is so sad... Now playing despacito by Luis Fonsi")
+            self.audio.play_audio(file_name="secret_song")
+        elif command == "it's time for a revolution":
+            self.audio.play_audio(file_name="one_day_more")
+    
+    @staticmethod
+    def format_time(self):
+        now = datetime.datetime.now()
+        hour = now.hour
+
+        if hour > 12:
+            hour -= 12
+            meridiem = 'pm'
+        else:
+            meridiem = 'am'
+
+        return now.minute, hour, meridiem
+    
     def run_mv(self, command):
         """
         Runs primitive movement related methods for the robot
@@ -161,7 +179,7 @@ class Speech():
             
         elif command == "can you walk backwards":
             self.tts.speak("Get ready to catch me!")
-            self.movmotion_proxye.walk_bk_set()
+            self.move.motion_proxy.walk_bk_set()
             
         elif command == "are you tired robbie":
             self.tts.speak("yawn... time for a lie down")
@@ -231,14 +249,16 @@ class Microphone():
         
         except sr.UnknownValueError:
             print("Audio not understood, please try again")
+            audio_log = '{no-value}'
 
         except sr.RequestError as req_err:
             print("could not request results from google API {}".format(req_err))
+            audio_log = '{no-value}'
 
-        except sr.WaitTimeoutError:
+        except LookupError:
             print("Audio timed out, ending the process...")
-            audio_log = None
-
+            audio_log = '{no-value}'
+            
         return audio_log
 
 class Behaviour():
@@ -309,3 +329,23 @@ class Behaviour():
             self.call_act(dance, self.DNC_LBL)    
         elif command == "show me your best dance moves":
             self.call_act("caravan palace", self.DNC_LBL)
+
+def call_method(speech):
+    try:
+        speech.rec_speech()
+        return True
+    except KeyboardInterrupt:
+        return False
+
+if __name__ == "__main__":
+    IP = "192.168.1.129"
+    motion_proxy = Movement(IP, 9559)
+    bhv_dir = "G:\\Programming\\RemoteSandbox\\NAO-Robot-Interactions\\pkl_sources\\"
+    bhv_pkl_file = "robot_behaviours.pkl"
+    log_path = "G:\\Programming\\RemoteSandbox\\NAO-Robot-Interactions\\audio_log.txt"
+    # FIXME: properly pass motion_proxy from other files
+    speech = Speech(IP, motion_proxy, bhv_pkl_file, bhv_dir, log_path)
+    check_speech = True
+    while check_speech:
+        check_speech = call_method(speech)
+    

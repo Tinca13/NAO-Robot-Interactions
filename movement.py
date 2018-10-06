@@ -203,6 +203,7 @@ class Movement():
         motion_proxy.setWalkTargetVelocity(0, 0, 0, 1)
 
     def walk_fw_set(self):
+        posture_proxy = ALProxy("ALRobotPosture", self.IP, self.port)
         posture_proxy.goToPosture("StandInit", 0.5)
         # Initialises the relevant settings for safe walking
         motion_proxy.setWalkArmsEnabled(True, True)
@@ -215,6 +216,7 @@ class Movement():
         motion_proxy.setWalkTargetVelocity(0, 0, 0, 1)
 
     def walk_bk_set(self):
+        posture_proxy = ALProxy("ALRobotPosture", self.IP, self.port)
         posture_proxy.goToPosture("StandInit", 0.5)
         # Initialises the relevant settings for safe walking
         motion_proxy.setWalkArmsEnabled(True, True)
