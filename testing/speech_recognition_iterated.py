@@ -27,8 +27,7 @@ class Speech():
         # constant for all instances of the robot
         self.PORT = 9559
         # TODO: change this to use pickle
-        self.com_dict = 
-                {"speech": 
+        self.com_dict = {"speech": 
                     {"hello robbie", "fire the trebuchet", "what is the time",
                     "how are you", "where are we", "what is this department",
                     "what is your favourite pathway"},
@@ -41,7 +40,7 @@ class Speech():
                     "bless you"},
                 "dance": 
                     {"do you feel like dancing", "show me your best dance moves",
-                    "do you know thriller"}
+                    "do you know thriller"},
                 "stop": {"it is time to stop", "can you please stop that movement"} 
                 } 
         # checks move is a motion proxy
@@ -65,7 +64,7 @@ class Speech():
         command = ''
         
         while command != None:
-            command = self.mic.audio_log()
+            command = self.mic.rec_audio()
             self.check_command(command)
 
     def check_command(self, command):
