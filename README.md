@@ -7,7 +7,13 @@ Scripts that allow for full manipulation of the NAO robot's joints and sensors. 
 - Live video: Streaming of video from the robot's camera.
 
 ## Voice commands:
-Shown in the commands.txt file.
+There are five types of voice commands, with the full list being given in extra_info/commands.txt. The types of command are:
+- Speech: Conversation based Human-Robot Interactions.
+- Movement: For controlling the robots movements, such as walking.
+- Behaviours: Used to trigger pre-installed complex movements.
+- Dances: A subset of behaviours, these are pre-installed dances for the robot such as Michael Jackson's Thriller.
+- Audio: Plays various songs using the robot's speakers.
+There is also a final command which will stop the robot. Provided you say 'stop' in a sentence the robot will stop its current action and reset to wait for a new command to be given.
 
 ## Contributors:
 - [Zach Wharton](https://github.com/zwharton15)
