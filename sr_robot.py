@@ -5,6 +5,7 @@ TODO:
     -- Merge with updated movement refactor and test
     -- Review data structures for commands, make them more compact and easily expandable
     -- Create a small GUI to manage microphone setup and testing, as well as displaying speech output
+    -- Make voice commands more robust, use in keyword more to allow for more fluid interactions
 """
 import time
 import random
@@ -42,9 +43,10 @@ class Speech():
                 "dance": 
                     {"do you feel like dancing", "show me your best dance moves",
                     "do you know thriller"},
-                "stop": {"it is time to stop", "can you please stop that movement"} ,
-                "audio": {"robbie that is so sad", "it's time for a revolution"}
+                "audio": 
+                    {"robbie that is so sad", "it's time for a revolution"}
                 } 
+        self.STOP_KEYWORD = "stop"
         # checks move is a motion proxy
         self.motion_proxy = motion_proxy
         self.tts = Other(self.IP, self.PORT)
@@ -75,12 +77,16 @@ class Speech():
         Keyword arguments:
         command -- a string of the audio input for the robot
         """
+        # all commands in the command dictionary are lower case for consistency
         command = command.lower()
 
         for key in self.com_dict:
-            if command in self.com_dict[key]:
+            # checks whether to stop the robot first so all the other dictionary keys don't need to be checked
+            if self.STOP_KEYWORD in command:
+                self.motion_proxy.behaviour(behaviour_name="stop")
+            elif command in self.com_dict[key]:
                 self.run_command(key, command)
-                return
+                break
     
     def run_command(self, key, command):
         """
@@ -91,10 +97,7 @@ class Speech():
         key -- the key of the command dictionary to check which sub-method to call
         command -- used to trigger certain actions in the sub-methods
         """
-        # checks whether to stop first for efficiency (doesn't have to check other dictionary keys)
-        if key == "stop":
-            self.motion_proxy.behaviour(behaviour_name="stop")
-        elif key == "speech":
+        if key == "speech":
             self.run_speech(command)
         elif key == "movement":
             self.run_mv(command)
@@ -361,7 +364,7 @@ if __name__ == "__main__":
     bhv_pkl_file = "robot_behaviours.pkl"
     # change paths when required
     bhv_dir = "G:\\Programming\\RemoteSandbox\\NAO-Robot-Interactions\\pkl_sources\\"
-    log_path = "G:\\Programming\\RemoteSandbox\\NAO-Robot-Interactions\\audio_log.txt"
+    log_path = "G:\\Programming\\RemoteSandbox\\NAO-Robot-Interactions\\extra_info\\audio_log.txt"
     # FIXME: properly pass motion_proxy from other files
     speech = Speech(IP, motion_proxy, bhv_pkl_file, bhv_dir, log_path)
     check_speech = True
