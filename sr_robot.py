@@ -122,7 +122,7 @@ class Speech():
             self.greeting()
         elif command == "what is the time" or command == "what time is it":
             # formats the current time into a speakable format for the robot
-            minute, hour, meridiem = Speech.format_time()
+            _, minute, hour, meridiem = Speech.format_time()
             self.tts.speak("The time is {}:{} {}".format(hour, minute, meridiem))
         elif command == "how are you" or command == "how are you robbie":
             self.emotion()
@@ -182,9 +182,10 @@ class Speech():
             self.motion_proxy.posture("LyingBack")
     
     @staticmethod
-    def format_time():
+    def format_time(audio=''):
         """
         Acquires the current time in minutes, hours and the meridiem (am or pm)
+        and formats it into a readable string output
 
         Returns:
         now.minute -- the current time (minutes)
@@ -200,7 +201,9 @@ class Speech():
         else:
             meridiem = 'am'
 
-        return now.minute, hour, meridiem 
+        time_str = "at {1}:{0}{2} user said: {3}".format(now.minute, hour, meridiem, audio)
+
+        return time_str, now.minute, hour, meridiem
 
 class Microphone():
     def __init__(self, audio_log):
@@ -248,8 +251,6 @@ class Microphone():
         audio_log -- the most recent sentence that has been detected as a string
         """
         data = []
-        t_now = time.time()
-        t_struct = time.localtime(t_now)
 
         with sr.Microphone(self.MIC) as src:
             audio = self.s_rec.listen(src, timeout=self.T_OUT, phrase_time_limit=self.T_LIMIT)
@@ -257,12 +258,12 @@ class Microphone():
 
         try:
             audio_log = self.s_rec.recognize_google(audio)
-            print("at {} user said {}".format(time.asctime(t_struct), audio_log))
+            print(Speech.format_time(audio_log))
             data.append(audio_log)
 
             with open(self.log, 'a') as log_file:
                 for sample in data:
-                    log_file.write(f"{sample}\n")
+                    log_file.write(Speech.format_time(sample))
         
         except sr.UnknownValueError:
             print("Audio not understood, please try again")
