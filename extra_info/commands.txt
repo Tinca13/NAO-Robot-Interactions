@@ -1,0 +1,29 @@
+Speech:
+    - hello (robbie)
+    - what is the time/what time is it
+    - how are you/how are you robbie
+    - where are we
+    - what is this department
+    - what is your favourite pathway
+    - what is up dog
+
+Movement:
+    - can you sit down
+    - stand
+    - can you walk forward/come over here robbie
+    - can you walk backwards
+    - are you tired 
+
+Behaviours:
+    - can you play the guitar
+    - why don't you do some exercise/can you do push-ups
+    - bless you
+
+Dances:
+    - do you feel like dancing
+    - show me your best dance moves
+    - do you know thriller
+
+Audio:
+    - robbie that is so sad
+    - it's time for a revolution
