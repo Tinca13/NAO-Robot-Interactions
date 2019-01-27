@@ -27,18 +27,27 @@ class Interface(QtGui.QMainWindow):
         self.setGeometry(position[0], position[1], self.width, self.height)
         self.statusBar().showMessage("DEBUG version 0.1 -- NAOqi GUI")
         self.init_menubar()
-        self.init_behaviour_frame()
         self.load_joint_sliders()
+        self.init_labels()
+        self.init_behaviour_frame()
         self.show()
 
     def init_menubar(self):
         self.main_menu = self.menuBar()
 
         self.file_menu = self.main_menu.addMenu("File")
+
+        load_gui_action = QtGui.QAction("Load Camera GUI", self)
+        load_gui_action.setShortcut("Ctrl+T")
+        load_gui_action.setStatusTip("Loads the camera Interface")
+        load_gui_action.triggered.connect(self.load_camera_gui)
+
         exit_action = QtGui.QAction("Exit", self)
         exit_action.setShortcut("Ctrl+Z")
         exit_action.setStatusTip("Close the GUI")
         exit_action.triggered.connect(sys.exit)
+
+        self.file_menu.addAction(load_gui_action)
         self.file_menu.addAction(exit_action)
 
         self.help_menu = self.main_menu.addMenu("Help")
@@ -47,52 +56,112 @@ class Interface(QtGui.QMainWindow):
         load_naoqi_docs.triggered.connect(lambda: gui_utils.load_webpage(self.NAO_DOCS_URL))
         self.help_menu.addAction(load_naoqi_docs)
 
+    def init_labels(self):
+        left_label = QtGui.QLabel("Left", self)
+        left_label.move(self.width/10, self.height/16)
+        left_label.resize(self.width/5, self.height/20)
+        left_label.setStyleSheet("background-color: rgb(135,206,250)")
+        left_label.setAlignment(Qt.AlignCenter)
+
+        right_label = QtGui.QLabel("Right", self)
+        right_label.move(self.width/3, self.height/16)
+        right_label.resize(self.width/5, self.height/20)
+        right_label.setStyleSheet("background-color: rgb(255,255,224)")
+        right_label.setAlignment(Qt.AlignCenter)
+
     def load_joint_sliders(self):
-        self.left_right_checkbox = QtGui.QCheckBox("Left", self)
-        self.left_right_checkbox.move(self.width/10, self.height/20)
-        self.left_right_checkbox.toggled.connect(self.switch_control_side)
-
-        self.r_elbow_roll_slider = QtGui.QSlider(Qt.Horizontal, self)
-        self.r_elbow_yaw_slider = QtGui.QSlider(Qt.Horizontal, self)
-        self.r_shoulder_roll_slider = QtGui.QSlider(Qt.Horizontal, self)
-        self.r_shoulder_yaw_slider = QtGui.QSlider(Qt.Horizontal, self)
-        self.r_wrist_yaw_slider = QtGui.QSlider(Qt.Horizontal, self)
-
-        self.l_elbow_roll_slider = QtGui.QSlider(Qt.Horizontal, self)
-        self.l_elbow_yaw_slider = QtGui.QSlider(Qt.Horizontal, self)
-        self.l_shoulder_roll_slider = QtGui.QSlider(Qt.Horizontal, self)
-        self.l_shoulder_yaw_slider = QtGui.QSlider(Qt.Horizontal, self)
-        self.l_wrist_yaw_slider = QtGui.QSlider(Qt.Horizontal, self)
-
-        qsliders = {
-            "left" : [self.l_elbow_roll_slider, self.l_elbow_yaw_slider, self.l_shoulder_roll_slider,
-                    self.l_shoulder_yaw_slider, self.l_wrist_yaw_slider],
-            "right" : [self.r_elbow_roll_slider, self.r_elbow_yaw_slider, self.r_shoulder_roll_slider, 
-                    self.r_shoulder_yaw_slider, self.r_wrist_yaw_slider]
+        # To add more sliders, add an entry to the respective dictionary
+        self.qsliders = {
+            "left" : [
+                {"name" : "Left Elbow Roll", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : -88.5, "max" : -2, "start" : -45},
+                {"name" : "Left Elbow Yaw", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : -119.5, "max" : 119.5, "start" : 0},
+                {"name" : "Left Shoulder Roll", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : -18, "max" : 76, "start" : 0},
+                {"name" : "Left Shoulder Pitch", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : -119.5, "max" : 119.5, "start" : 0},
+                {"name" : "Left Wrist Yaw", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : -104.5, "max" : 104.5, "start" : 0}
+            ],
+            "right" : [
+                {"name" : "Right Elbow Roll", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : 2, "max" : 88.5, "start" : 43},
+                {"name" : "Right Elbow Yaw", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : -119.5, "max" : 119.5, "start" : 0},
+                {"name" : "Right Shoulder Roll", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : -76, "max" : 18, "start" : 0},
+                {"name" : "Right Shoulder Pitch", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : -119.5, "max" : 119.5, "start" : 0},
+                {"name" : "Right Wrist Yaw", 
+                "QSlider" : None, "QLabel" : None,
+                "min" : -104.5, "max" : 104.5, "start" : 0}
+            ]
         }
 
-        for key in qsliders:
-            for idx, slider in enumerate(qsliders[key]):
-                slider_x_pos = self.width/10
-                if key == "right":
-                    slider_x_pos = self.width/3
-                slider.move(slider_x_pos, (self.height/8)*(idx+1))
-                slider.resize(self.width/5, self.height/20)
+        for key in self.qsliders:
+            for idx, slider_dict in enumerate(self.qsliders[key]):
+                self.set_sliders(idx, slider_dict, key)     
+
+    def set_sliders(self, idx, slider_dict, key):
+        slider_dict["QSlider"] = QtGui.QSlider(Qt.Horizontal, self)
+        slider = slider_dict["QSlider"]
+        x_pos = self.width/10
+
+        if key == "right":
+            x_pos = self.width/3
+
+        slider.move(x_pos, (self.height/8)*(idx+1))
+        slider.resize(self.width/5, self.height/20)
+        slider.setMinimum(slider_dict["min"])
+        slider.setMaximum(slider_dict["max"])
+        slider.setValue(slider_dict["start"])
+        slider.setTickPosition(QtGui.QSlider.TicksBelow)
+        # FIXME: change calculation since it causes issues with combined negative and positive values
+        tick_interval = (slider_dict["min"] - slider_dict["max"]) / 10
+        slider.setTickInterval(round(tick_interval))
+
+        slider_dict["QLabel"] = QtGui.QLabel("", self)
+        label = slider_dict["QLabel"]
+        label.setText("{} : {}".format(slider_dict["name"], slider_dict["start"]))
+        label.move(x_pos+(self.width/15), (self.height/8)*(idx+1)+30)
+        label.resize(self.width/5, self.height/20)
 
     def init_buttons(self):
-        self.button_list = []
-        self.update_buttons(self.behaviour_dict)
-        
-    def update_buttons(self, current_dict):
-        if len(self.button_list) > 0:
-            for button in self.button_list:
-                button.deleteLater()
+        self.head_lock_button = QtGui.QPushButton("Toggle Head Lock", self)
+        self.head_lock_button.move(self.width/10, self.height - (self.height/10))
+        self.head_lock_button.resize(self.width/5, self.height/20)
+        self.head_lock_button.clicked.connect(self.toggle_head_lock)
+        self.head_lock_label = QtGui.QLabel("Head status: Unlocked", self)
+        self.head_lock_label.move(self.width/3, self.height - (self.height/10))
+        self.head_lock_label.resize(self.width/5, self.height/20)
+        self.head_lock_label.setAlignment(Qt.AlignCenter)
+        # red 240,128,128
+        self.head_lock_label.setStyleSheet("background-color: rgb(204,255,204)")
 
-        print(current_dict)
-        for idx, behaviour in enumerate(current_dict):
+        self.button_list = []
+        self.current_dict = self.behaviour_dict
+        self.update_buttons()
+    
+    def update_buttons(self):
+        for button in self.button_list:
+            button.deleteLater()
+
+        self.button_list = []
+        for idx, behaviour in enumerate(self.current_dict):
             temp_button = QtGui.QPushButton(behaviour, self)
             temp_button.resize(self.width/5, self.height/20)
             temp_button.move(self.width - (self.width / 3), (self.height / 10)*(idx+2))
+            temp_button.show()
             self.button_list.append(temp_button)
 
     def init_behaviour_frame(self):
@@ -109,16 +178,26 @@ class Interface(QtGui.QMainWindow):
         # TODO: allow behaviour dicts to be accessed from everywhere
         pass
 
+    def load_camera_gui(self):
+        print("DEBUG: loading camera GUI not implemented yet")
+
     def cb_update(self):
         if self.behaviour_combobox.currentText() == "Behaviours":
-            current_dict = self.behaviour_dict
+            self.current_dict = self.behaviour_dict
         elif self.behaviour_combobox.currentText() == "Dances":
-            current_dict = self.dance_dict
-        self.update_buttons(current_dict)
+            self.current_dict = self.dance_dict
+        print(self.current_dict)
+        self.update_buttons()
         print("DEBUG: changed index")
 
-    def switch_control_side(self):
-        gui_utils.toggle_checkbox_state(self.left_right_checkbox, ["Left", "Right"])
+    def toggle_head_lock(self):
+        # TODO: add robot API toggle head lock code here
+        button = QtGui.QPushButton("test", self)
+        button.move(100, 100)
+        button.resize(100, 30)
+        gui_utils.toggle_label_status(self.head_lock_label, 
+                                    ("Head status: Unlocked", "Head status: Locked"),
+                                    ("(204,255,204)", "(240,128,128)"))
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
